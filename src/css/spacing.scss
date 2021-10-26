@@ -1,0 +1,56 @@
+$header-height: 90px;
+
+$grid-gap: 3em;
+$grid-gap-small: 1.5em;
+
+
+@mixin header {
+  $header-height: 90px;
+
+  @media only screen and (max-width: 768px) {
+    $header-height: 78px;
+  }
+}
+
+@mixin header-height {
+  height: 90px;
+
+  @media only screen and (max-width: 768px) {
+    height: 78px;
+  }
+}
+
+@mixin container-padding {
+  padding: 0 10%;
+
+  @media only screen and (max-width: 768px) {
+    padding: 0 5%;
+  }
+}
+
+
+@mixin section-padding-top() {
+  padding-top: 5em;
+
+  @media only screen and (max-width: 768px) {
+    padding-top: 3em;
+  }
+}
+
+@mixin section-padding-bottom() {
+  padding-bottom: 6em;
+
+  @media only screen and (max-width: 768px) {
+    padding-bottom: 4em;
+  }
+}
+
+@mixin section-padding-left-right() {
+  padding-left: 25px;
+  padding-right: 25px;
+
+  @media only screen and (max-width: 768px) {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}

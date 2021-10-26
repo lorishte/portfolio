@@ -1,0 +1,48 @@
+@import "colors";
+
+@mixin main-transition {
+  -webkit-transition: .5s;
+  -moz-transition: .5s;
+  transition: .5s;
+}
+
+@mixin slow-transition {
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  transition: 1s;
+}
+
+@mixin ease-out($duration: .25s) {
+  -webkit-transition: $duration ease-out;
+  -moz-transition: $duration ease-out;
+  transition: $duration ease-out;
+}
+
+@mixin ease-in($duration: .25s) {
+  -webkit-transition: $duration ease-in;
+  -moz-transition: $duration ease-in;
+  transition: $duration ease-in;
+}
+
+@mixin translate($valueX: 0, $valueY: 0) {
+  -webkit-transform: translate($valueX, $valueY);
+  -moz-transform: translate($valueX, $valueY);
+  -ms-transform: translate($valueX, $valueY);
+  -o-transform: translate($valueX, $valueY);
+  transform: translate($valueX, $valueY);
+}
+
+
+@mixin scale($value: 1) {
+  -webkit-transform: scale($value);
+  -moz-transform: scale($value);
+  -ms-transform: scale($value);
+  -o-transform: scale($value);
+  transform: scale($value);
+}
+
+
+// Images
+@mixin fit-img {
+  transform: scale(1.04);
+}

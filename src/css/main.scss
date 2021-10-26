@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800,900&subset=cyrillic&display=swap');
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+
+@import "colors";
+@import "grid";
+@import "animations";
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  //scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  color: $default-text;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+}
+
+ul,
+li {
+  list-style-type: none;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  //margin: 0.4em 0;
+}
+
+h1 {
+  font-size: 4em;
+}
+
+h2 {
+  font-size: 3em;
+}
+
+p {
+  //margin: .4em 0;
+}
+
+.container-fluid {
+  width: 100%;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover,
+  &:active,
+  &:visited {
+    color: inherit;
+    cursor: pointer;
+  }
+}
+
+button {
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.btn {
+  width: max-content;
+  display: inline-block;
+  margin-right: 5px;
+  padding: 15px 30px;
+  @include main-transition;
+  border: 1px solid transparent;
+  //height: fit-content;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .fa {
+    margin-right: 5px;
+  }
+
+  &.btn-primary {
+    color: $white;
+    background-color: $primary;
+
+    &:hover,
+    &:active {
+      background-color: $primary-hover;
+    }
+  }
+
+  &.btn-default {
+    color: $white;
+    background-color: $default;
+
+    &:hover,
+    &:active {
+      color: $default;
+      background-color: $white;
+      border: 1px solid $medium-grey;
+    }
+  }
+
+
+  &.btn-transparent {
+    color: $default;
+    background-color: transparent;
+
+    &:hover,
+    &:active {
+      color: $default;
+      background-color: $white;
+    }
+  }
+
+  &.btn-transparent-white {
+    color: $white;
+    background-color: transparent;
+
+    &:hover,
+    &:active {
+      color: $default;
+      background-color: $white;
+    }
+  }
+
+  &.btn-success {
+    color: $white;
+    background-color: $success;
+
+    &:hover,
+    &:active {
+      background-color: $success-hover;
+    }
+  }
+
+  &.btn-info {
+    color: $white;
+    background-color: $info;
+
+    &:hover,
+    &:active {
+      background-color: $info-hover;
+    }
+  }
+
+
+  &.xs {
+    padding: 5px 7px;
+    font-size: .7em;
+  }
+
+  &.sm {
+    padding: 8px 15px;
+    font-size: .8em;
+  }
+
+  &.md {
+    padding: 12px 18px; //default
+  }
+
+  &.lg {
+    padding: 20px 25px;
+  }
+}
+
+
+.img-container {
+  overflow: hidden;
+}
+
+.img-fit {
+  object-fit: cover;
+  height: 100%;
+  @include fit-img;
+}
+
+
+
+#toggle-menu-btn {
+  justify-self: center;
+  margin-right: 10px;
+  align-self: center;
+
+  .toggle {
+    display: block;
+    height: 3px;
+    width: 35px;
+    background-color: $black;
+    margin: 5px auto;
+
+    @include main-transition;
+  }
+
+  &.clicked {
+
+    .toggle:first-of-type {
+      transform: rotate(45deg);
+      position: relative;
+      top: 8px;
+
+    }
+
+    .toggle:nth-of-type(2) {
+      opacity: 0;
+    }
+
+    .toggle:last-of-type {
+      transform: rotate(-45deg);
+      position: relative;
+      top: -8px;
+    }
+  }
+}
+
+
+footer {
+  @include display-grid;
+  grid-template-columns: 7fr 1fr 1fr;
+  @include align-content-center;
+  padding: 0 20px;
+  height: 60px;
+  background-color: $medium-grey;
+  font-size: .85em;
+
+  * {
+    align-self: center;
+  }
+
+  #social-media {
+    i {
+      font-size: 2em;
+      margin-right: 10px;
+      color: $dark-grey;
+      @include main-transition;
+
+      &:hover {
+        color: $black;
+      }
+    }
+  }
+}
+
