@@ -3,186 +3,182 @@ import PropTypes from 'prop-types';
 
 
 class ImagePreview extends React.Component {
-	constructor (props) {
-		super(props);
+    constructor(props) {
+        super(props);
 
-		this.state = {
-			image: this.props.image,
+        this.state = {
+            image: '',
 
-			allImages: this.props.allImages,
+            allImages: this.props.allImages,
 
-			touchStartPosition: 0,
-			touchEndPosition: 0
-		};
+            touchStartPosition: 0,
+            touchEndPosition: 0
+        };
 
-		this.image = React.createRef();
-	}
+        this.image = React.createRef();
+        this.previewContainer = React.createRef();
+    }
 
-	componentDidMount () {
+    componentDidMount() {
+        this.setState({
+            image: this.props.image,
+            allImages: this.props.allImages
+        })
 
-		document.addEventListener('keydown', this.handleKeyPress);
-	}
+        document.addEventListener('keydown', this.handleKeyPress);
+    }
 
-	componentWillUnmount () {
-		document.removeEventListener('keydown', this.handleKeyPress);
-	}
+    componentWillUnmount() {
+        document.removeEventListener('keydown', this.handleKeyPress);
+    }
 
-	handleKeyPress = (e) => {
+    handleKeyPress = (e) => {
 
-		if (e.key === 'ArrowLeft') this.showPrevImage();
+        if (e.key === 'ArrowLeft') this.showPrevImage();
 
-		if (e.key === 'ArrowRight') this.showNextImage();
+        if (e.key === 'ArrowRight') this.showNextImage();
 
-		if (e.key === 'Escape') this.props.onClose();
-	};
+        if (e.key === 'Escape') this.closeGallery();
+    };
 
-	// componentWillReceiveProps (nextProps, nextContext) {
-	//
-	// 	let direction = nextProps.direction;
-	//
-	// 	if (direction === 'left') this.showPrevImage();
-	//
-	// 	if (direction === 'right') this.showNextImage();
-	//
-	// 	if (direction === '') this.props.onClose();
-	// }
+    showNextImage = () => {
 
-	showNextImage = () => {
+        let image = this.image.current;
 
-		let allImages = this.state.allImages;
+        let allImages = this.state.allImages;
 
-		let image = this.image.current;
+        let index = this.getIndex() + 1;
 
-		let currentImageIndex = 0;
+        if (index >= allImages.length) {
+            index = 0
+        }
 
-		allImages.forEach((e, i) => {
-			if (e.url === this.state.image.url) currentImageIndex = (i);
-		});
+        this.fadeOut(image);
 
-		let nextImageIndex = currentImageIndex + 1;
-		if (nextImageIndex === allImages.length) {
-			// nextImageIndex = 0;
-			this.props.onClose();
-			return;
-		}
+        this.saveNewImage(index, image)
+    };
 
-		this.fadeOut(image);
+    showPrevImage = () => {
 
-		setTimeout(() => {
-			this.setState({image: this.state.allImages[nextImageIndex]});
-			this.fadeIn(image);
-		}, 600);
+        let image = this.image.current;
 
-	};
+        let index = this.getIndex() - 1;
 
-	showPrevImage = () => {
-		let allImages = this.state.allImages;
+        if (index < 0) {
+            index = this.state.allImages.length - 1;
+        }
 
-		let image = this.image.current;
+        this.fadeOut(image);
+        this.saveNewImage(index, image);
+    };
 
-		let currentImageIndex = 0;
+    getIndex = () => {
+        return this.state.allImages.indexOf(this.state.image);
+    }
 
-		allImages.forEach((e, i) => {
-			if (e.url === this.state.image.url) currentImageIndex = (i);
-		});
+    saveNewImage = (index, image) => {
 
-		let prevImageIndex = currentImageIndex - 1;
-		if (prevImageIndex < 0) {
-			// prevImageIndex = allImages.length - 1;
-			this.props.onClose();
-			return;
-		}
+        setTimeout(() => {
+            this.setState({image: this.state.allImages[index]});
+            this.fadeIn(image);
+        }, 600);
+    }
 
-		this.fadeOut(image);
+    fadeOut = (el) => {
 
-		setTimeout(() => {
-			this.setState({image: this.state.allImages[prevImageIndex]});
-			this.fadeIn(image);
-		}, 600);
-	};
+        window.requestAnimationFrame(function () {
+            el.style.transition = 'opacity 400ms';
+            el.style.opacity = 0;
+        });
+    };
 
-	fadeOut = (el) => {
-		window.requestAnimationFrame(function () {
-			el.style.transition = 'opacity 400ms';
-			el.style.opacity = 0;
-		});
-	};
+    fadeIn = (el) => {
 
-	fadeIn = (el) => {
-		window.requestAnimationFrame(function () {
-			el.style.transition = 'opacity 1200ms';
-			el.style.opacity = 1;
-		});
-	};
+        window.requestAnimationFrame(function () {
+            el.style.transition = 'opacity 1200ms';
+            el.style.opacity = 1;
+        });
+    };
 
-	onTouchStart = (e) => {
+    closeGallery = () => {
+        this.fadeOut(this.previewContainer.current);
+        setTimeout(() => {
+            this.props.onClose();
+        }, 600);
+    }
 
-		let touchStart = e.changedTouches[0].clientX;
+    onTouchStart = (e) => {
 
-		this.setState({touchStartPosition: touchStart});
+        let touchStart = e.changedTouches[0].clientX;
 
-	};
+        this.setState({touchStartPosition: touchStart});
 
-	onTouchEnd = (e) => {
+    };
 
-		let touchEnd = e.changedTouches[0].clientX;
+    onTouchEnd = (e) => {
 
-		this.setState({touchEndPosition: touchEnd}, () => {
+        let touchEnd = e.changedTouches[0].clientX;
 
-			let startPosition = this.state.touchStartPosition;
-			let endPosition = this.state.touchEndPosition;
+        this.setState({touchEndPosition: touchEnd}, () => {
 
-			if (startPosition >= endPosition) {
-				this.showNextImage();
-			} else {
-				this.showPrevImage();
-			}
-		});
+            let startPosition = this.state.touchStartPosition;
+            let endPosition = this.state.touchEndPosition;
 
-	};
+            if (startPosition >= endPosition) {
+                this.showNextImage();
+            } else {
+                this.showPrevImage();
+            }
+        });
 
-	render () {
+    };
 
-		let imageUrl ='/';
+    render() {
 
-		return (
-			<div id='image-preview' onTouchEnd={this.onTouchEnd} onTouchStart={this.onTouchStart}>
+        let imageUrl = '/images/projects/' + this.props.projectFolder + '/' + this.state.image;
 
-				<figure className="image">
-					<img src={imageUrl}
-					     className="img-fit"
-					     alt={this.state.image.url}
-					     ref={this.image}/>
-				</figure>
+        return (
+            <div id='image-preview' onTouchEnd={this.onTouchEnd} onTouchStart={this.onTouchStart} ref={this.previewContainer}>
 
-				<div className="gallery-navigation">
-					<button className={'btn btn-default-light md'}
-					        aria-label={'Show previous image'}
-					        onClick={this.showPrevImage}>
-						<i className="fa fa-arrow-left" aria-hidden="true"/>
-					</button>
-					<button className={'btn btn-default-light md'}
-					        aria-label={'Show next image'}
-					        onClick={this.showNextImage}>
-						<i className="fa fa-arrow-right" aria-hidden="true"/>
-					</button>
-				</div>
+                <figure className="image">
+                    <img src={imageUrl}
+                         className="img-fit"
+                         alt={this.state.image}
+                         ref={this.image}/>
+                </figure>
 
-				<button id='close-btn' className="btn btn-default-light md" aria-label={'Close'} onClick={this.props.onClose}>
-					<i className="fa fa-times" aria-hidden="true"/>
-				</button>
-			</div>
-		);
-	}
+                <div className="gallery-navigation">
+
+                    <button className={'btn btn-default'}
+                            aria-label={'Show previous image'}
+                            onClick={this.showPrevImage}>
+                        <i className="fa fa-arrow-left" aria-hidden="true"/>
+                        {/*<img src='/images/buttons/arrow-left-white.svg' alt='close button'/>*/}
+                    </button>
+                    <button className={'btn btn-default'}
+                            aria-label={'Show next image'}
+                            onClick={this.showNextImage}>
+                        <i className="fa fa-arrow-right" aria-hidden="true"/>
+                        {/*<img src='/images/buttons/arrow-right-white.svg' alt='close button'/>*/}
+                    </button>
+                </div>
+
+                <button id='close-btn' className="btn btn-default" aria-label={'Close'} onClick={this.closeGallery}>
+                    <i className="fa fa-times" aria-hidden="true"/>
+                    {/*<img src='/images/buttons/close-btn-white.svg' alt='close button'/>*/}
+                </button>
+            </div>
+        );
+    }
 }
 
 export default ImagePreview;
 
 ImagePreview.propTypes = {
-	image: PropTypes.object,
-	projectFolder: PropTypes.string,
-	allImages: PropTypes.array,
-	activeLanguage: PropTypes.string,
-	onClose: PropTypes.func,
-	// direction: PropTypes.string
+    image: PropTypes.string,
+    projectFolder: PropTypes.string,
+    allImages: PropTypes.array,
+    activeLanguage: PropTypes.string,
+    onClose: PropTypes.func,
+    // direction: PropTypes.string
 };

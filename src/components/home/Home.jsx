@@ -13,20 +13,9 @@ class Home extends React.Component {
         super(props);
 
         this.state = {
-            projects: [],
+            projects: PROJECTS,
         };
 
-    }
-    componentDidMount() {
-        this.loadProjects()
-    }
-
-
-    loadProjects = () => {
-        this.setState({
-                projects: PROJECTS,
-            }
-        )
     }
 
 
@@ -34,13 +23,16 @@ class Home extends React.Component {
 
         let activeLanguage = this.context.language;
 
-        let projects = this.state.projects.map(p => {
-            return (
-                <ProjectCard key={p._id }
-                             project={p}
-                             activeLanguage={activeLanguage}/>
-            );
-        })
+        let projects = this.state.projects
+            .filter(p => !p.isBlocked)
+            .sort((a, b) => a.orderNumber - b.orderNumber)
+            .map(p => {
+                return (
+                    <ProjectCard key={p._id}
+                                 project={p}
+                                 activeLanguage={activeLanguage}/>
+                );
+            })
 
         return (
             <div id="projects" className="container">

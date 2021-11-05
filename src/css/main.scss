@@ -22,7 +22,8 @@ body {
   padding: 0;
   color: $default-text;
   font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
+  font-size: 12px;
+  //background-color: $page-background;
 }
 
 ul,
@@ -51,7 +52,7 @@ p {
 }
 
 .container {
-  width: 80%;
+  width: 60%;
   margin: auto;
 }
 
@@ -185,75 +186,8 @@ button {
   overflow: hidden;
 }
 
-.img-fit {
-  object-fit: cover;
-  height: 100%;
-  @include fit-img;
-}
 
 
 
-#toggle-menu-btn {
-  justify-self: center;
-  margin-right: 10px;
-  align-self: center;
 
-  .toggle {
-    display: block;
-    height: 3px;
-    width: 35px;
-    background-color: $black;
-    margin: 5px auto;
-
-    @include main-transition;
-  }
-
-  &.clicked {
-
-    .toggle:first-of-type {
-      transform: rotate(45deg);
-      position: relative;
-      top: 8px;
-
-    }
-
-    .toggle:nth-of-type(2) {
-      opacity: 0;
-    }
-
-    .toggle:last-of-type {
-      transform: rotate(-45deg);
-      position: relative;
-      top: -8px;
-    }
-  }
-}
-
-
-footer {
-  @include display-grid;
-  grid-template-columns: 7fr 1fr 1fr;
-  @include align-content-center;
-  padding: 0 20px;
-  height: 60px;
-  background-color: $medium-grey;
-  font-size: .85em;
-
-  * {
-    align-self: center;
-  }
-
-  #social-media {
-    i {
-      font-size: 2em;
-      margin-right: 10px;
-      color: $dark-grey;
-      @include main-transition;
-
-      &:hover {
-        color: $black;
-      }
-    }
-  }
-}
 

@@ -4,61 +4,94 @@ const LANGUAGES = {
 };
 
 const RESOLUTIONS = {
-	xs: 450,
-	sm: 680,
+	xs: 500,
+	sm: 768,
 	md: 980,
-	bootstrapXS: 768,
-	bootstrapSM: 992,
-	bootstrapMD: 1200,
-	smTopSellers: 640,
-	mdTopSellers: 1000,
 };
 
+const CLIENTS = {
+	1: {
+		bg: 'Сдружение Топливо',
+		en: 'Toplivo Association'
+	},
+	2: {
+		bg: 'ТОКО Кафе',
+		en: 'TOKO Coffee'
+	},
+	3: {
+		bg: 'Equilibrium',
+		en: 'Equilibrium'
+	},
+	4: {
+		bg: 'Vital Concept',
+		en: 'Vital Concept'
+	},
+	5: {
+		bg: 'Българска Асоциация по Таекуон-до',
+		en: 'Bulgarian Association of Taekwon-Do'
+	},
+	6: {
+		bg: 'Анелия и Иван Кацарови',
+		en: 'Aneliya & Ivan Kacarovi'
+	},
+	7:{
+		bg: 'Enoteca',
+		en: 'Enoteca'
+	},
+	8: {
+		bg: 'Omnia Sourcing',
+		en: 'Omnia Sourcing'
+	},
+	9: {
+		bg: 'GLOBUS',
+		en: 'GLOBUS'
+	},
+	10: {
+		bg: 'Orlen Oils',
+		en: 'Orlen Oils'
+	},
+	11: {
+		bg: 'Maxxmart',
+		en: 'Maxxmart'
+	},
+	12: {
+		bg: 'Walltopia',
+		en: 'Walltopia'
+	}
+}
+
+
+const HEADER = {
+
+	name: {
+		bg: 'Лора Милчева',
+		en: 'Lora Milcheva'
+	},
+	phone: {
+		bg: '0887 718 788',
+		en: '+359 887 718 788'
+	},
+	email: 'lora.milcheva@outlook.com'
+}
 
 const FOOTER = {
-	bg: 'Addict Brand Storyteller. Всички права запазени.',
-	en: 'Addict Brand Storyteller. All rights reserved.'
+	bg: 'Всички права запазени.',
+	en: 'All rights reserved.'
 };
-
-const MENU = {
-	bg: {
-		home: 'Начало',
-		projects: 'Проекти',
-		services: 'Услуги',
-		aboutUs: 'За нас',
-		careers: 'Кариери',
-		contact: 'Контакт',
-		clients: 'Клиенти',
-		categories: 'Категории',
-		sections: 'Секциии',
-		login: 'Логин',
-		logout: 'Изход'
-	},
-	en: {
-		home: 'Home',
-		projects: 'Projects',
-		services: 'Services',
-		aboutUs: 'About Us',
-		careers: 'Careers',
-		contact: 'Contact',
-		clients: 'Clients',
-		categories: 'Categories',
-		sections: 'Sections',
-		login: 'Login',
-		logout: 'Logout'
-	}
-};
-
 
 
 const BUTTONS = {
-	bg: {
-		// Project Card
-		more: 'Повече'
+	more: {
+		bg: 'More',
+		en: 'Повече'
 	},
-	en: {
-		// Project Card
-		more: 'More'
+	contacts: {
+		bg: 'Контакти',
+		en: 'Contacts'
+	},
+	view: {
+		bg: 'Виж',
+		en: 'View'
 	}
 };
 
@@ -67,6 +100,7 @@ export {
 	LANGUAGES,
 	RESOLUTIONS,
 	FOOTER,
-	MENU,
 	BUTTONS,
+	CLIENTS,
+	HEADER
 };

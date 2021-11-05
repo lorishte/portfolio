@@ -3,41 +3,74 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // Constants
-import {BUTTONS} from "../../../constants/constants";
+import {CLIENTS, RESOLUTIONS} from "../../../constants/constants";
 
 // Utils
 import UTILS from '../../../utils/utils'
 
 
-function ProjectCard(props) {
+class ProjectCard extends React.Component {
 
-    let {project, activeLanguage} = props;
+    constructor(props) {
+        super(props);
 
-    let pathLang = activeLanguage === 'en' ? '/' + activeLanguage : '';
+        this.state = {
+            isMobile: false,
+        };
 
-    let imageUrl = UTILS.generateUrl(project.projectFolder, project.thumbnail);
+    }
 
-    return (
-        <div className='project-card'>
-            <Link to={pathLang + '/projects/' + project.url}
-                  aria-label={project.name[activeLanguage]}>
+    componentDidMount() {
+        this.checkResolution();
+        window.addEventListener('resize', this.checkResolution);
+    }
 
-                <figure className="img-container">
-                    <img className="img-fit" src={imageUrl} alt={project.name[activeLanguage]}/>
-                </figure>
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.checkResolution);
+    }
 
-                <div className="project-info">
+    checkResolution = () => {
+        if (window.innerWidth <= RESOLUTIONS.sm) {
+            this.setState({isMobile: true})
+        } else {
+            this.setState({isMobile: false})
+        }
+    }
 
-                    <p className='project-name'>{project.name[activeLanguage]}</p>
-                    <p className='project-description'>{project.description[activeLanguage]}</p>
+    render() {
+        let {project, activeLanguage} = this.props;
 
-                    <button className="btn"
-                            aria-label={BUTTONS[activeLanguage].more}>{BUTTONS[activeLanguage].more}</button>
-                </div>
+        let imageUrl =
+            this.state.isMobile ?
+                UTILS.generateUrl(project.projectFolder, project.mobileThumbnail) :
+                UTILS.generateUrl(project.projectFolder, project.thumbnail)
 
-            </Link>
-        </div>
-    );
+        let client_id = project.client_id
+
+        let client = CLIENTS[client_id][activeLanguage]
+
+        return (
+            <div className='project-card'>
+                <Link to={'/projects/' + project.url}
+                      aria-label={project.name[activeLanguage]}>
+
+                    <figure className="img-container">
+                        <img className="thumbnail" src={imageUrl} alt={project.name[activeLanguage]}/>
+                    </figure>
+
+                    <div className="project-info">
+
+                        <div>
+                            <p className='client'>{client}</p>
+                            <p className='project-description'>{project.description[activeLanguage]}</p>
+                        </div>
+
+                    </div>
+
+                </Link>
+            </div>
+        );
+    }
 
 }
 

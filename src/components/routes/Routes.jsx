@@ -38,7 +38,7 @@ let Routes = () => {
 
                         <Route exact path='/' component={Home}/>
 
-                        <Route exact path='/projects/:name/:lng' component={Project}/>
+                        <Route exact path='/projects/:name' component={Project}/>
 
                         <Route path='*' component={NotFound} key='error'/>
                     </Switch>
