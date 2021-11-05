@@ -1,0 +1,231 @@
+#header {
+  position: fixed;
+  display: grid;
+  grid-template-rows: 60px 3fr;
+  width: 100%;
+  -webkit-transition: .5s;
+  -moz-transition: .5s;
+  transition: .5s;
+  align-items: center;
+  z-index: 2; }
+  #header #brand {
+    width: 250px;
+    margin-left: 6%;
+    grid-row-start: 2; }
+  #header .info {
+    justify-self: end; }
+    #header .info #info-btn {
+      display: none; }
+    #header .info .contacts {
+      display: inline-block;
+      -webkit-transition: .5s;
+      -moz-transition: .5s;
+      transition: .5s; }
+    #header .info span {
+      margin-right: 1em; }
+      #header .info span:last-child {
+        margin-right: 2em; }
+  #header #lng-btn {
+    text-transform: uppercase;
+    justify-self: start;
+    margin-right: 2em; }
+  #header #toggle-menu-btn {
+    justify-self: end;
+    margin-right: 10px; }
+    #header #toggle-menu-btn .toggle {
+      display: block;
+      height: 3px;
+      width: 35px;
+      background-color: #000;
+      margin: 5px auto;
+      -webkit-transition: .5s;
+      -moz-transition: .5s;
+      transition: .5s; }
+    #header #toggle-menu-btn.clicked .toggle:first-of-type {
+      transform: rotate(45deg);
+      position: relative;
+      top: 8px; }
+    #header #toggle-menu-btn.clicked .toggle:nth-of-type(2) {
+      opacity: 0; }
+    #header #toggle-menu-btn.clicked .toggle:last-of-type {
+      transform: rotate(-45deg);
+      position: relative;
+      top: -8px; }
+
+main {
+  padding: 15em 0 5em 0;
+  min-height: 100vh; }
+
+footer {
+  padding: 1em 0 1.5em 0;
+  margin: 0 2em;
+  border-top: 1px solid #e8e8e8; }
+  footer span {
+    margin-right: 1em;
+    margin-bottom: .5em; }
+    footer span:first-of-type {
+      display: block; }
+
+#go-to-top-btn {
+  position: fixed;
+  bottom: -25px;
+  right: 2em;
+  margin-right: 0;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: .5s;
+  -moz-transition: .5s;
+  transition: .5s; }
+  #go-to-top-btn.visible {
+    opacity: 1;
+    bottom: 25px;
+    visibility: visible; }
+  #go-to-top-btn.bottom {
+    bottom: 86px; }
+  #go-to-top-btn .fa {
+    margin: 0; }
+
+#projects {
+  display: grid;
+  grid-gap: 1em 1em;
+  grid-template-columns: repeat(5, 1fr);
+  justify-content: center; }
+  #projects .project-card {
+    position: relative;
+    justify-self: center; }
+    #projects .project-card .img-container {
+      display: grid; }
+      #projects .project-card .img-container .thumbnail {
+        width: 184px;
+        height: 178px; }
+    #projects .project-card .project-info {
+      display: grid;
+      align-items: center;
+      padding: 2.5em;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      background-color: #1aa35f;
+      color: #fff;
+      -webkit-transition: 0.25s ease-in;
+      -moz-transition: 0.25s ease-in;
+      transition: 0.25s ease-in; }
+      #projects .project-card .project-info .client {
+        margin-bottom: .5em;
+        font-weight: 600;
+        font-size: 1.2em; }
+    #projects .project-card:hover .project-info {
+      opacity: 1; }
+
+#project {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  overflow: visible; }
+  #project .gallery {
+    display: grid;
+    grid-gap: 1em; }
+    #project .gallery.twoCols {
+      grid-template-columns: 1fr 1fr; }
+    #project .gallery .landscape {
+      grid-column-start: 1;
+      grid-column-end: 3; }
+    #project .gallery .img-container {
+      position: relative;
+      -webkit-transition: 1s ease-in;
+      -moz-transition: 1s ease-in;
+      transition: 1s ease-in; }
+      #project .gallery .img-container .img-fit {
+        border: 1px solid #e8e8e8; }
+      #project .gallery .img-container .btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        opacity: 0; }
+      #project .gallery .img-container:hover .image {
+        cursor: pointer;
+        opacity: .7;
+        -webkit-transition: 0.25s ease-in;
+        -moz-transition: 0.25s ease-in;
+        transition: 0.25s ease-in; }
+  #project .project-info {
+    position: fixed;
+    left: 63%;
+    padding: 2.5em 0 2.5em 2.5em; }
+    #project .project-info .client {
+      font-weight: 600;
+      font-size: 1.2em;
+      margin-bottom: .5em; }
+    #project .project-info .description {
+      margin-bottom: .5em; }
+    #project .project-info .btnControls {
+      margin-top: 2em; }
+    #project .project-info .btn.disabled {
+      opacity: .5;
+      cursor: default; }
+      #project .project-info .btn.disabled:hover {
+        color: #fff;
+        background-color: #000;
+        border-color: #000; }
+  #project #image-preview {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    transition: .5s; }
+    #project #image-preview #close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px; }
+      #project #image-preview #close-btn .fa {
+        margin: 0; }
+    #project #image-preview .gallery-navigation {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      -webkit-transform: translate(0, -50%);
+      -moz-transform: translate(0, -50%);
+      -ms-transform: translate(0, -50%);
+      -o-transform: translate(0, -50%);
+      transform: translate(0, -50%);
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 1em; }
+      #project #image-preview .gallery-navigation .btn:nth-child(2) {
+        justify-self: end; }
+      #project #image-preview .gallery-navigation .fa {
+        margin: 0; }
+    #project #image-preview .image {
+      display: grid;
+      align-items: center;
+      justify-items: center;
+      width: 100%;
+      height: 100%;
+      -webkit-transition: .5s;
+      -moz-transition: .5s;
+      transition: .5s; }
+      #project #image-preview .image .img-fit {
+        width: auto;
+        max-width: 90%;
+        height: auto;
+        max-height: 90vh; }
+  #project #video-gallery .video-container {
+    width: inherit; }
+    #project #video-gallery .video-container .video {
+      width: 100%; }
+
+/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800,900&subset=cyrillic&display=swap");
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  color: #000;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px; }
+
+ul,
+li {
+  list-style-type: none; }
+
+h1 {
+  font-size: 4em; }
+
+h2 {
+  font-size: 3em; }
+
+.container-fluid {
+  width: 100%; }
+
+.container {
+  width: 60%;
+  margin: auto; }
+
+img {
+  width: 100%;
+  height: auto; }
+
+a {
+  text-decoration: none;
+  color: inherit; }
+  a:hover, a:active, a:visited {
+    color: inherit;
+    cursor: pointer; }
+
+button {
+  border: none;
+  outline: none;
+  background: none; }
+
+.btn {
+  width: max-content;
+  display: inline-block;
+  margin-right: 5px;
+  padding: 15px 30px;
+  -webkit-transition: .5s;
+  -moz-transition: .5s;
+  transition: .5s;
+  border: 1px solid transparent; }
+  .btn:hover {
+    cursor: pointer; }
+  .btn .fa {
+    margin-right: 5px; }
+  .btn.btn-primary {
+    color: #fff;
+    background-color: #1aa35f; }
+    .btn.btn-primary:hover, .btn.btn-primary:active {
+      background-color: #1aa37e; }
+  .btn.btn-default {
+    color: #fff;
+    background-color: #000; }
+    .btn.btn-default:hover, .btn.btn-default:active {
+      color: #000;
+      background-color: #fff;
+      border: 1px solid #adadad; }
+  .btn.btn-transparent {
+    color: #000;
+    background-color: transparent; }
+    .btn.btn-transparent:hover, .btn.btn-transparent:active {
+      color: #000;
+      background-color: #fff; }
+  .btn.btn-transparent-white {
+    color: #fff;
+    background-color: transparent; }
+    .btn.btn-transparent-white:hover, .btn.btn-transparent-white:active {
+      color: #000;
+      background-color: #fff; }
+  .btn.btn-success {
+    color: #fff;
+    background-color: #485b79; }
+    .btn.btn-success:hover, .btn.btn-success:active {
+      background-color: #2b3749; }
+  .btn.btn-info {
+    color: #fff;
+    background-color: #0fc565; }
+    .btn.btn-info:hover, .btn.btn-info:active {
+      background-color: #0c9f52; }
+  .btn.xs {
+    padding: 5px 7px;
+    font-size: .7em; }
+  .btn.sm {
+    padding: 8px 15px;
+    font-size: .8em; }
+  .btn.md {
+    padding: 12px 18px; }
+  .btn.lg {
+    padding: 20px 25px; }
+
+.img-container {
+  overflow: hidden; }
+
+/*# sourceMappingURL=main.css.map */
