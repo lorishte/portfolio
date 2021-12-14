@@ -1,6 +1,6 @@
 import React from 'react';
 import {LanguageContext} from '../common/languagesContext/LanguageContext';
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 // Partials
 import ImagePreview from './partials/ImagePreview';
@@ -10,7 +10,7 @@ import VideoGallery from "./partials/VideoGallery";
 
 // Constants
 import {PROJECTS} from "../../constants/projectsInfo";
-import {CLIENTS} from "../../constants/constants";
+import {CLIENTS, ERROR_PAGE} from "../../constants/constants";
 
 
 class Project extends React.Component {
@@ -47,6 +47,11 @@ class Project extends React.Component {
     loadProject = () => {
 
         let project = PROJECTS.filter(p => p.url === this.projectUrl)[0]
+
+        if (project === undefined) {
+            this.props.history.push('/error')
+            return
+        }
 
         this.setState({
                 project: project,
