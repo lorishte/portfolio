@@ -14,7 +14,7 @@
 # images
 /public/images
 
-.idea
+.idea/
 
 # misc
 .DS_Store
